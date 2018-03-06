@@ -1,7 +1,12 @@
-<h1>{{ title }}</h1>
-<p>{{ head }}</p>
+<h1>My Tweeter</h1>
+<p>Wassup</p>
 <ul>
-{% for tweet in data %}
-  <li>{{ data.tweet }}</li>
-{% endfor %}
+    {% for tweet in tweets %}
+    <li>{{ tweet.tweet }}</li>
+    {% endfor %}
 </ul>
+
+<!--each li tag has access to each object in the tweets array
+for(var tweet in tweets) {
+  return <li>tweet</li>
+}-->
