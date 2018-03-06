@@ -42,4 +42,7 @@ const dataArray = function() {
 module.exports = {
     dataArray: dataArray(),
     find: find,
+
 }
+
+console.log(data);

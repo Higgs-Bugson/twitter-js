@@ -2,14 +2,15 @@
  const app = express();
  const volleyball = require("volleyball");
  const nunjucks = require("nunjucks");
- const tweetBank = require("./tweetBank")
+ const tweetBank = require("./tweetBank");
+ const routes = require('./routes');
 
+
+ app.use('/', routes)
 
  app.get('/', (req, res) => {
      res.send("Welcome")
- });
-
-
+ })
 
 
  const tweets = [];
@@ -19,6 +20,8 @@
      tweets.push(thisTweet);
  })
 
+
+
  app.set('view engine', 'html');
  app.engine('html', nunjucks.render);
  nunjucks.configure('views', { noCache: true });
@@ -27,14 +30,15 @@
      console.log(output);
  })
 
-
+ app.use(function(req, res, next) {
+     console.log(`${req.method} /  ${req.path}`)
+     console.log(`${req.method} /  ${res.statusCode}`)
+     next();
+ })
 
  app.get('/twitter', (req, res) => {
-     console.log("our tweets", tweets)
      res.render('index', { tweets: tweets });
  });
-
-
 
 
  app.listen(3000, () => {
